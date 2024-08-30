@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Meu Blog Profissional{% endblock %}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+        }
+        .sidebar {
+            min-width: 250px;
+            max-width: 250px;
+            background-color: #343a40;
+            color: white;
+            padding: 15px;
+        }
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Meu Blog</h2>
+        <nav class="nav flex-column">
+            <a class="nav-link text-white" href="{% url 'index' %}">Início</a>
+            <a class="nav-link text-white" href="{% url 'Sobre' %}">Sobre</a>
+        </nav>
+    </div>
+
+    <div class="content">
+        {% for Eu in listagem %}
+            <div class="container">
+                <h1>Bem-vindo ao meu Blog Profissional</h1>
+                <div class="profile">
+                    <img src="{{ Eu.foto.url }}" alt="Foto de {{ Eu.nome }}" class="profile-img rounded-circle mb-3" style="width: 300px; height: 300px;">
+                    <h2>{{ Eu.nome }}</h2>
+                    <p>Idade: {{ Eu.idade }} anos</p>
+                    <p>Email: {{ Eu.email }}</p>
+                    <p>Endereço: {{ Eu.endereco }}, {{ Eu.cidade }}, {{ Eu.estado }}</p>
+                    <p>Gênero: {{ Eu.genero }}</p>
+                    <p>Estado Cívil: {{ Eu.estado_cívil }}</p>
+                </div>
+                <div class="about">
+                    <h3>Sobre mim</h3>
+                    <p>{{ Eu.sobre.descricao }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
